@@ -40,6 +40,7 @@ Steps Included
 
 3. Setup inventory file and copy the private key on master server(change the permission as well)
 
+```
 #vi inventoryfile.txt
 
 [node_exporters]
@@ -52,8 +53,11 @@ serverip ansible_user="username" ansible_ssh_private_key_file="ansible.pem"
 
 serverip ansible_user="username" ansible_ssh_private_key_file="ansible.pem"
 
+```
 
 4. node-exporter:
+
+```
 
 1.Downloading and extracting node-exporter on server
 2.Copying that binary file to /usr/local/bin/
@@ -61,9 +65,11 @@ serverip ansible_user="username" ansible_ssh_private_key_file="ansible.pem"
 4.Adding neccessary service file content to the node-exporter service file.
 5.Once done reload the daemon and restart the service
 
+```
 
 5. Prometheus:
 
+```
 
 Use the below steps to download and extract prometheus on server,
 
@@ -82,6 +88,42 @@ Use the below steps to download and extract prometheus on server,
 2. Install, restarting and enabling grafana
 3. Dashboard setup
 
+
+Once this is done we can load the below url for getting prometheus panel,
+
+http://serverip:9090/targets
+
+
+
+We can access the grafana using the below url,
+
+http://serverip:3000
+
+
+username:admin
+password:admin
+
+```
+
+****************
+Grafana Dashboard setup::
+****************
+
+```
+
+1. Select the Data sources tab and add the name and in the url section add the private ip or localhost of the server, since we have installed grafana and prometheus on same server.
+
+http://privateip:9090
+
+then click save & test
+
+2. for getting the dashboard view we can import the dashboard file,
+
+click on + symbol on right side, then click on import.. enter 1860 in the "import via grafana.com" section and click load.
+
+once it is done select the data source we have created earlier
+
+```
 
 Variables Used
 ------------
@@ -252,9 +294,16 @@ Node-exporter:
 
 ```
 
+Outputs:
+------------------
+
+![](images/screenshot1.png)
+![](images/screenshot2.png)
+![](images/screenshot3.png)
+![](images/screenshot4.png)
 
 
-Conclution:
+Conclusion:
 ------------------
 
 This playbook will help you to install and setup prometheus and grafana and the setup needs one master , one server for prometheus and grafana and two servers as node-exporters(the servers we monitor)

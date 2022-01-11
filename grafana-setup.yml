@@ -1,0 +1,19 @@
+---
+
+- name: "Installing Prometheus"
+  hosts: prometheus
+  become: true
+  roles:
+    - grafana
+  tasks:
+
+    - name: "Installing grafana"
+      yum:
+        name: grafana
+        state: present
+
+    - name: "Restarting grafana"
+      service:
+        name: grafana-server
+        state: restarted
+        enabled: true

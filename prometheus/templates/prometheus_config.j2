@@ -1,0 +1,10 @@
+global:
+  scrape_interval: 10s
+
+scrape_configs:
+{% for ip in server_ips %}
+  - job_name: 'server {{ loop.index }}'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['{{ ip }}:9100']
+{% endfor %}

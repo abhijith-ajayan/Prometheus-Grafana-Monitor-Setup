@@ -1,0 +1,81 @@
+---
+
+- name: "Installing prometheus"
+  hosts: prometheus
+  roles:
+    - prometheus
+  become: true
+  vars:
+    prometheus_url: "https://github.com/prometheus/prometheus/releases/download/v2.32.1/prometheus-2.32.1.linux-amd64.tar.gz"
+    prometheus_user: "prometheus"
+    
+  tasks:
+
+    - name: "Downloading prometheus and installing prometheus"
+      unarchive:
+        src: "{{ prometheus_url }}"
+        dest: /opt/
+        remote_src: yes
+
+
+    - name: "Moving file contents"
+      command: mv /opt/prometheus-2.32.1.linux-amd64 /opt/prometheus
+
+    - name: "Creating directories"  
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ prometheus_user }}"
+        group: "{{ prometheus_user }}"
+      with_items:
+        - /etc/prometheus
+        - /var/lib/prometheus
+
+    - name: "Copying files to binary"
+      copy:
+        src: "{{ item }}"
+        dest: /usr/local/bin/
+        remote_src: yes
+        owner: "{{ prometheus_user }}"
+        group: "{{ prometheus_user }}"
+        mode: '0755'
+      with_items:
+        - /opt/prometheus/prometheus
+        - /opt/prometheus/promtool
+
+
+
+    - name: "Copying files"
+      copy:
+        src: "{{ item }}"
+        dest: /etc/prometheus
+        remote_src: yes
+        owner: "{{ prometheus_user }}"
+        group: "{{ prometheus_user }}"
+      with_items:
+        - /opt/prometheus/consoles
+        - /opt/prometheus/console_libraries
+
+
+
+    - name: "Copying prometheus_config file"
+      template:
+        src: /etc/ansible/roles/prometheus/templates/prometheus_config.j2
+        dest: /etc/prometheus/prometheus.yml
+        owner: "{{ prometheus_user }}"
+        group: "{{ prometheus_user }}"
+
+
+    - name: "Copying prometheus service file"
+      template:
+        src: /etc/ansible/roles/prometheus/templates/prometheus.service.j2
+        dest: /etc/systemd/system/prometheus.service
+        owner: "{{ prometheus_user }}"
+        group: "{{ prometheus_user }}"
+    
+    - name: "Restarting and enabling prometheus service"
+      service:
+        name: "{{ prometheus_user }}"
+        state: restarted
+        enabled: true
+

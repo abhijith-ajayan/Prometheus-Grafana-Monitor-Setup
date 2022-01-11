@@ -50,7 +50,7 @@ serverip ansible_user="username" ansible_ssh_private_key_file="ansible.pem"
 
 [prometheus]
 
-3.111.32.0 ansible_user="username" ansible_ssh_private_key_file="ansible.pem"
+serverip ansible_user="username" ansible_ssh_private_key_file="ansible.pem"
 
 
 4. node-exporter:
@@ -85,6 +85,7 @@ Use the below steps to download and extract prometheus on server,
 
 Variables Used
 ------------
+```
 
 ---
 
@@ -97,13 +98,17 @@ server_ips:
   - first server ip
   - seconf server ip
 
+```
 
-Example Playbook
+Sample Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
 
 Node-exporter:
+
+```
+
 # cat node-exporter-setup.yml 
 - name: "Installing node-exporter"
   hosts: node_exporters
@@ -245,7 +250,7 @@ Node-exporter:
         enabled: true
 
 
-
+```
 
 
 

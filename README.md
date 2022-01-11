@@ -81,8 +81,12 @@ Use the below steps to download and extract prometheus on server,
 6.Adding neccessary service file content to the prometheus service file.
 7.Once done reload the daemon and restart the service
 
+```
 
 6. Grafana:
+
+
+```
 
 1. Adding the repo for grafana installation
 2. Install, restarting and enabling grafana

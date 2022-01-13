@@ -1,4 +1,4 @@
-Prometheus + Grafana Monitor Setup
+# Prometheus + Grafana Monitor Setup
 =========
 
  This is an ansible playbook, that can be used for installing and setup prometheus and grafana on client servers, all that plays are using with inbuilt ansible modules.
@@ -11,7 +11,7 @@ Architecture
  
  
 
-Requirements
+# # Requirements
 ------------
 
 - Install Ansible on your Master Machine
@@ -33,7 +33,7 @@ Requirements
     - command
 
 
-Steps Included
+# # Steps Included
 --------------
 
 1. One Master server for ansible, 2 node-exporters and one server with prometheus and grafana installed
@@ -137,7 +137,7 @@ once it is done select the data source we have created earlier
 
 ```
 
-Variables Used
+# # Variables Used
 ------------
 ```
 
@@ -154,7 +154,7 @@ server_ips:
 
 ```
 
-Sample Playbook
+# # Sample Playbook
 ----------------
 
 Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
@@ -306,7 +306,7 @@ Node-exporter:
 
 ```
 
-Outputs:
+# # Outputs:
 ------------------
 
 ![](images/screenshot1.png)
@@ -315,7 +315,7 @@ Outputs:
 ![](images/screenshot4.png)
 
 
-Conclusion:
+# # Conclusion:
 ------------------
 
 This playbook will help you to install and setup prometheus and grafana and the setup needs one master , one server for prometheus and grafana and two servers as node-exporters(the servers we monitor)

@@ -32,6 +32,7 @@ Architecture
     - unarchive
     - command
 
+- You need to copy the roles folder contents under /etc/ansible/roles/ directory before execution
 
 ## Steps Included
 --------------

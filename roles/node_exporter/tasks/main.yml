@@ -1,0 +1,17 @@
+---
+
+- name: "Creating node_exporter_user"
+  user:
+    name: "{{ node_user }}"
+    create_home: no
+
+
+- name: "Copying service file"
+  template:
+    src: /etc/ansible/roles/node_exporter/templates/node_exporter.service.j2
+    dest: /etc/systemd/system/node_exporter.service
+    owner: "{{ node_user }}"
+    group: "{{ node_user }}"
+  notify:
+    - restart-node-exporter
+

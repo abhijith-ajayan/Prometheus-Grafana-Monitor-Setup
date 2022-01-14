@@ -1,0 +1,7 @@
+---
+
+- name: "Creating prometheus user"
+  user:
+    name: "{{ prometheus_user }}"
+    create_home: no
+  

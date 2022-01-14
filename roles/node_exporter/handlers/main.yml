@@ -1,0 +1,7 @@
+---
+
+- name: "restart-node-exporter"
+  service:
+    name: "{{ node_user }}"
+    state: restarted
+    enabled: true

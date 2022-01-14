@@ -1,0 +1,8 @@
+---
+
+- name: "Copying grafana repo file"
+  copy:
+    src: /etc/ansible/roles/grafana/templates/grafana.repo
+    dest: /etc/yum.repos.d/grafana.repo
+    owner: root
+    group: root

@@ -1,7 +1,7 @@
 # Prometheus + Grafana Monitor Setup
 =========
 
- This is an ansible playbook, that can be used for installing and setup prometheus and grafana on client servers, all that plays are using with inbuilt ansible modules.
+ This is an ansible playbook, that can be used for installing and setup node_exporter, prometheus and grafana on servers, all that plays are using with inbuilt ansible modules.
  
  
 Architecture
